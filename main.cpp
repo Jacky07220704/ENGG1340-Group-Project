@@ -27,7 +27,7 @@ char selection_menu();
 void list_database(vector<employee_inf>& database);
 void add_employee(vector<employee_inf>& database);
 void search_employee(vector<employee_inf>& database);
-
+oid delete_employee(vector<employee_inf>& database);
 bool check_dup_id(vector<employee_inf>& database, string id);
 
 // main program
@@ -54,6 +54,7 @@ int main() {
 		case '6':
 			break;
 		case '7':
+       delete_employee(database);
 			break;
 		default:
 			cout << "Invalid input!" << endl;
@@ -232,7 +233,7 @@ void add_employee(vector<employee_inf>& database) {
 			break;
 		}
 	}
-	
+
 }
 
 // search employee
@@ -262,6 +263,21 @@ void search_employee(vector<employee_inf>& database) {
 	if (!found) {
 		cout << "ID not found." << endl;
 	}
+}
+// delete employee
+void delete_employee(vector<employee_inf>& database) {
+	string id;
+  bool found = false;
+  cout << "Please input the ID to be deleted: ";
+  cin >> id;
+  for (unsigned i = 0; i < database.size(); i++) {
+		if (database[i].id == id) {
+          database[i].clear();
+      }
+    }
+    if (!found) {
+  		cout << "ID not found." << endl;
+  	}
 }
 
 // miscilleaneous function -----
